@@ -77,7 +77,7 @@
 
 + (UIImage *)jsq_bubbleCompactImage
 {
-    return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_min"];
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"chatbubble"];
 }
 
 + (UIImage *)jsq_bubbleCompactTaillessImage

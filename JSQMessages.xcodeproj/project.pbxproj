@@ -106,6 +106,11 @@
 		88C00A521A44D4E500B004B3 /* JSQVideoMediaItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C00A511A44D4E500B004B3 /* JSQVideoMediaItemTests.m */; };
 		88C4583019F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4582F19F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.m */; };
 		94A4FA20C2FBD0D62614D5A8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E6750B77E8A7042BA0754B /* libPods.a */; };
+		E1AF93991B21CE5C00CE563F /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E1AF93981B21CE5C00CE563F /* Montserrat-Light.otf */; };
+		E1AF939E1B21D5EA00CE563F /* spacer.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AF939A1B21D5EA00CE563F /* spacer.png */; };
+		E1AF939F1B21D5EA00CE563F /* vouchstamp.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AF939B1B21D5EA00CE563F /* vouchstamp.png */; };
+		E1AF93A01B21D5EA00CE563F /* vouchstamp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AF939C1B21D5EA00CE563F /* vouchstamp@2x.png */; };
+		E1AF93A11B21D5EA00CE563F /* vouchstamp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AF939D1B21D5EA00CE563F /* vouchstamp@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +271,11 @@
 		88C4582E19F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQMessagesMediaViewBubbleImageMasker.h; sourceTree = "<group>"; };
 		88C4582F19F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesMediaViewBubbleImageMasker.m; sourceTree = "<group>"; };
 		97E6750B77E8A7042BA0754B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1AF93981B21CE5C00CE563F /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
+		E1AF939A1B21D5EA00CE563F /* spacer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spacer.png; path = JSQMessagesAssets.bundle/Images/spacer.png; sourceTree = "<group>"; };
+		E1AF939B1B21D5EA00CE563F /* vouchstamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vouchstamp.png; path = JSQMessagesAssets.bundle/Images/vouchstamp.png; sourceTree = "<group>"; };
+		E1AF939C1B21D5EA00CE563F /* vouchstamp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vouchstamp@2x.png"; path = "JSQMessagesAssets.bundle/Images/vouchstamp@2x.png"; sourceTree = "<group>"; };
+		E1AF939D1B21D5EA00CE563F /* vouchstamp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vouchstamp@3x.png"; path = "JSQMessagesAssets.bundle/Images/vouchstamp@3x.png"; sourceTree = "<group>"; };
 		FC5C727E4CCDA2B95A7BA30C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -415,6 +425,11 @@
 		88A25F3F19D8E01A00924534 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E1AF93981B21CE5C00CE563F /* Montserrat-Light.otf */,
+				E1AF939A1B21D5EA00CE563F /* spacer.png */,
+				E1AF939B1B21D5EA00CE563F /* vouchstamp.png */,
+				E1AF939C1B21D5EA00CE563F /* vouchstamp@2x.png */,
+				E1AF939D1B21D5EA00CE563F /* vouchstamp@3x.png */,
 				8861666C19F492B70025B958 /* JSQMessagesAssets.bundle */,
 			);
 			path = Assets;
@@ -714,16 +729,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1AF93A01B21D5EA00CE563F /* vouchstamp@2x.png in Resources */,
+				E1AF93991B21CE5C00CE563F /* Montserrat-Light.otf in Resources */,
 				886C33FF19F45E30006B4997 /* JSQMessagesViewController.podspec in Resources */,
 				8861666D19F492B70025B958 /* JSQMessagesAssets.bundle in Resources */,
+				E1AF939F1B21D5EA00CE563F /* vouchstamp.png in Resources */,
 				88A25FCF19D8E01A00924534 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				88A25FCD19D8E01A00924534 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				88A25FD619D8E01A00924534 /* JSQMessagesToolbarContentView.xib in Resources */,
 				88A25F3A19D8DF2500924534 /* Images.xcassets in Resources */,
 				88A25FBC19D8E01A00924534 /* JSQMessagesViewController.xib in Resources */,
+				E1AF93A11B21D5EA00CE563F /* vouchstamp@3x.png in Resources */,
 				88A25FD819D8E01A00924534 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				88A25F3919D8DF2500924534 /* Main.storyboard in Resources */,
 				88A25FD419D8E01A00924534 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
+				E1AF939E1B21D5EA00CE563F /* spacer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
