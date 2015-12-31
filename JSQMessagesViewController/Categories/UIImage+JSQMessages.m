@@ -90,6 +90,11 @@
     return [UIImage jsq_bubbleImageFromBundleWithName:@"clip"];
 }
 
++ (UIImage *)jsq_defaultFilterImage
+{
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"filtericonblack"];
+}
+
 + (UIImage *)jsq_defaultTypingIndicatorImage
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"typing"];

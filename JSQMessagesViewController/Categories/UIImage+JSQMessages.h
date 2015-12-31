@@ -66,6 +66,8 @@
  */
 + (UIImage *)jsq_defaultAccessoryImage;
 
++ (UIImage *)jsq_defaultFilterImage;
+
 /**
  *  @return The default typing indicator image.
  */

@@ -41,7 +41,7 @@
 
 /**
  *  The object that acts as the delegate of the collection view. 
- *  The delegate must adopt the `JSQMessagesCollectionViewDelegateFlowLayout` protocol.
+ *  The delegate must adpot the `JSQMessagesCollectionViewDelegateFlowLayout` protocol.
  */
 @property (weak, nonatomic) id<JSQMessagesCollectionViewDelegateFlowLayout> delegate;
 
@@ -86,7 +86,7 @@
  *
  *  @return A valid `JSQMessagesTypingIndicatorFooterView` object.
  */
-- (JSQMessagesTypingIndicatorFooterView *)dequeueTypingIndicatorFooterViewForIndexPath:(NSIndexPath *)indexPath;
+- (JSQMessagesTypingIndicatorFooterView *)dequeueTypingIndicatorFooterViewForIndexPath:(NSIndexPath *)indexPath avatar:(NSString *)avatar;
 
 /**
  *  Returns a `JSQMessagesLoadEarlierHeaderView` object for the specified index path

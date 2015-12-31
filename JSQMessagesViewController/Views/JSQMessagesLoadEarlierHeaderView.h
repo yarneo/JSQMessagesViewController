@@ -17,6 +17,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SwipeView/SwipeView.h>
 
 @class JSQMessagesLoadEarlierHeaderView;
 
@@ -60,6 +61,12 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesLoadEarlierHeaderViewHeight;
  *  Returns the load button of the header view.
  */
 @property (weak, nonatomic, readonly) UIButton *loadButton;
+@property (weak, nonatomic, readonly) SwipeView *swipeView;
+@property (weak, nonatomic, readonly) IBOutlet UIButton *matchmakerButton;
+@property (weak, nonatomic, readonly) IBOutlet UIButton *profileButton;
+@property (weak, nonatomic, readonly) IBOutlet UIActivityIndicatorView *loadingSpinner;
+
+- (void)configureUserContent:(NSDictionary *)user mmPhoto:(NSString *)mmPhoto mmReason:(NSString *)mmReason;
 
 #pragma mark - Class methods
 

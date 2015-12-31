@@ -96,18 +96,20 @@
 
 #pragma mark - Typing indicator
 
-- (JSQMessagesTypingIndicatorFooterView *)dequeueTypingIndicatorFooterViewForIndexPath:(NSIndexPath *)indexPath
+- (JSQMessagesTypingIndicatorFooterView *)dequeueTypingIndicatorFooterViewForIndexPath:(NSIndexPath *)indexPath avatar:(NSString *)avatar
 {
     JSQMessagesTypingIndicatorFooterView *footerView = [super dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                                  withReuseIdentifier:[JSQMessagesTypingIndicatorFooterView footerReuseIdentifier]
                                                                                         forIndexPath:indexPath];
+    
+    [footerView configureNewTypingIndicator:avatar];
 
-    [footerView configureWithEllipsisColor:self.typingIndicatorEllipsisColor
-                        messageBubbleColor:self.typingIndicatorMessageBubbleColor
-                       shouldDisplayOnLeft:self.typingIndicatorDisplaysOnLeft
-                         forCollectionView:self];
+//    [footerView configureWithEllipsisColor:self.typingIndicatorEllipsisColor
+//                        messageBubbleColor:self.typingIndicatorMessageBubbleColor
+//                       shouldDisplayOnLeft:self.typingIndicatorDisplaysOnLeft
+//                         forCollectionView:self];
 
-    return footerView;
+     return footerView;
 }
 
 #pragma mark - Load earlier messages header

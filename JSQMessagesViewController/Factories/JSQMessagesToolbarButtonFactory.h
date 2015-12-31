@@ -40,5 +40,9 @@
  *  @return A newly created button.
  */
 + (UIButton *)defaultSendButtonItem;
++ (UIButton *)defaultYesButtonItem;
++ (UIButton *)defaultNoButtonItem;
++ (UIButton *)defaultFiltersButtonItem;
+
 
 @end

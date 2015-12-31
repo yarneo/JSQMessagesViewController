@@ -90,7 +90,7 @@
         return CGSizeMake(315.0f, 225.0f);
     }
     
-    return CGSizeMake(210.0f, 150.0f);
+    return CGSizeMake(200.0f, 200.0f);
 }
 
 - (UIView *)mediaPlaceholderView

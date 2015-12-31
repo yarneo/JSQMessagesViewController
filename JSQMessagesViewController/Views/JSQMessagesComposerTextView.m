@@ -47,8 +47,8 @@
     
     CGFloat cornerRadius = 6.0f;
     
-    self.backgroundColor = [UIColor whiteColor];
-    self.layer.borderWidth = 0.5f;
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.borderWidth = 0.f;
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.layer.cornerRadius = cornerRadius;
     
@@ -146,6 +146,10 @@
 
 - (void)setFont:(UIFont *)font
 {
+    if (font == nil) {
+        font = [UIFont systemFontOfSize:16];
+    }
+
     [super setFont:font];
     [self setNeedsDisplay];
 }
@@ -154,13 +158,6 @@
 {
     [super setTextAlignment:textAlignment];
     [self setNeedsDisplay];
-}
-
-- (void)paste:(id)sender
-{
-    if (!self.pasteDelegate || [self.pasteDelegate composerTextView:self shouldPasteWithSender:sender]) {
-        [super paste:sender];
-    }
 }
 
 #pragma mark - Drawing

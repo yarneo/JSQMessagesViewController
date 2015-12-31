@@ -33,11 +33,11 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithImage:(UIImage *)image
+- (instancetype)initWithImageView:(UIImageView *)imageview
 {
     self = [super init];
     if (self) {
-        _image = [image copy];
+        _imageview = imageview;
         _cachedImageView = nil;
     }
     return self;
@@ -45,7 +45,7 @@
 
 - (void)dealloc
 {
-    _image = nil;
+    _imageview = nil;
     _cachedImageView = nil;
 }
 
@@ -57,9 +57,9 @@
 
 #pragma mark - Setters
 
-- (void)setImage:(UIImage *)image
+- (void)setImageView:(UIImageView *)imageview
 {
-    _image = [image copy];
+    _imageview = [imageview copy];
     _cachedImageView = nil;
 }
 
@@ -73,18 +73,17 @@
 
 - (UIView *)mediaView
 {
-    if (self.image == nil) {
+    if (self.imageview == nil) {
         return nil;
     }
     
     if (self.cachedImageView == nil) {
         CGSize size = [self mediaViewDisplaySize];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
-        imageView.frame = CGRectMake(0.0f, 0.0f, size.width, size.height);
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-        [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:imageView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
-        self.cachedImageView = imageView;
+        self.imageview.frame = CGRectMake(0.0f, 0.0f, size.width, size.height);
+        self.imageview.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageview.clipsToBounds = YES;
+        [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:self.imageview isOutgoing:self.appliesMediaViewMaskAsOutgoing];
+        self.cachedImageView = self.imageview;
     }
     
     return self.cachedImageView;
@@ -99,13 +98,13 @@
 
 - (NSUInteger)hash
 {
-    return super.hash ^ self.image.hash;
+    return super.hash ^ self.imageview.hash;
 }
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: image=%@, appliesMediaViewMaskAsOutgoing=%@>",
-            [self class], self.image, @(self.appliesMediaViewMaskAsOutgoing)];
+            [self class], self.imageview, @(self.appliesMediaViewMaskAsOutgoing)];
 }
 
 #pragma mark - NSCoding
@@ -114,7 +113,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _image = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(image))];
+        _imageview = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(imageView))];
     }
     return self;
 }
@@ -122,14 +121,14 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:self.image forKey:NSStringFromSelector(@selector(image))];
+    [aCoder encodeObject:self.imageview forKey:NSStringFromSelector(@selector(imageView))];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    JSQPhotoMediaItem *copy = [[JSQPhotoMediaItem allocWithZone:zone] initWithImage:self.image];
+    JSQPhotoMediaItem *copy = [[[self class] allocWithZone:zone] initWithImageView:self.imageview];
     copy.appliesMediaViewMaskAsOutgoing = self.appliesMediaViewMaskAsOutgoing;
     return copy;
 }

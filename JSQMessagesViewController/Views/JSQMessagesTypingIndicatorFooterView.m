@@ -22,16 +22,17 @@
 
 #import "UIImage+JSQMessages.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
 
 
 @interface JSQMessagesTypingIndicatorFooterView ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *bubbleImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bubbleImageViewRightHorizontalConstraint;
-
-@property (weak, nonatomic) IBOutlet UIImageView *typingIndicatorImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *typingIndicatorImageViewRightHorizontalConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UIView *smallCircle;
+@property (weak, nonatomic) IBOutlet UIView *mediumCircle;
+@property (weak, nonatomic) IBOutlet UIView *largeCircle;
 
 @end
 
@@ -60,13 +61,16 @@ const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.backgroundColor = [UIColor clearColor];
     self.userInteractionEnabled = NO;
-    self.typingIndicatorImageView.contentMode = UIViewContentModeScaleAspectFit;
+//    self.typingIndicatorImageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.avatarImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 - (void)dealloc
 {
-    _bubbleImageView = nil;
-    _typingIndicatorImageView = nil;
+    _avatarImageView = nil;
+    _smallCircle = nil;
+    _mediumCircle = nil;
+    _largeCircle = nil;
 }
 
 #pragma mark - Reusable view
@@ -74,48 +78,51 @@ const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
-    self.bubbleImageView.backgroundColor = backgroundColor;
 }
 
 #pragma mark - Typing indicator
+
+-(void)configureNewTypingIndicator:(NSString *)avatar {
+    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.layer.cornerRadius = 10;
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatar]];
+    
+    self.largeCircle.backgroundColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1];
+    self.largeCircle.alpha = 0;
+    self.largeCircle.clipsToBounds = YES;
+    self.largeCircle.layer.cornerRadius = 20;
+
+    self.mediumCircle.backgroundColor = [UIColor colorWithRed:214/255.0 green:214/255.0 blue:214/255.0 alpha:1];
+    self.mediumCircle.alpha = 0;
+    self.mediumCircle.clipsToBounds = YES;
+    self.mediumCircle.layer.cornerRadius = 16.5;
+    
+    self.smallCircle.backgroundColor = [UIColor colorWithRed:194/255.0 green:194/255.0 blue:194/255.0 alpha:1];
+    self.smallCircle.alpha = 0;
+    self.smallCircle.clipsToBounds = YES;
+    self.smallCircle.layer.cornerRadius = 13.5;
+    
+    [self bringSubviewToFront:self.avatarImageView];
+    
+    [UIView animateKeyframesWithDuration:1 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse | UIViewKeyframeAnimationOptionRepeat animations:^{
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.333 animations:^{
+            self.smallCircle.alpha = 1;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.333 relativeDuration:0.333 animations:^{
+            self.mediumCircle.alpha = 1;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.666 relativeDuration:0.334 animations:^{
+            self.largeCircle.alpha = 1;
+        }];
+    } completion:nil];
+    
+}
 
 - (void)configureWithEllipsisColor:(UIColor *)ellipsisColor
                 messageBubbleColor:(UIColor *)messageBubbleColor
                shouldDisplayOnLeft:(BOOL)shouldDisplayOnLeft
                  forCollectionView:(UICollectionView *)collectionView
 {
-    NSParameterAssert(ellipsisColor != nil);
-    NSParameterAssert(messageBubbleColor != nil);
-    NSParameterAssert(collectionView != nil);
-    
-    CGFloat bubbleMarginMinimumSpacing = 6.0f;
-    CGFloat indicatorMarginMinimumSpacing = 26.0f;
-    
-    JSQMessagesBubbleImageFactory *bubbleImageFactory = [[JSQMessagesBubbleImageFactory alloc] init];
-    
-    if (shouldDisplayOnLeft) {
-        self.bubbleImageView.image = [bubbleImageFactory incomingMessagesBubbleImageWithColor:messageBubbleColor].messageBubbleImage;
-        
-        CGFloat collectionViewWidth = CGRectGetWidth(collectionView.frame);
-        CGFloat bubbleWidth = CGRectGetWidth(self.bubbleImageView.frame);
-        CGFloat indicatorWidth = CGRectGetWidth(self.typingIndicatorImageView.frame);
-        
-        CGFloat bubbleMarginMaximumSpacing = collectionViewWidth - bubbleWidth - bubbleMarginMinimumSpacing;
-        CGFloat indicatorMarginMaximumSpacing = collectionViewWidth - indicatorWidth - indicatorMarginMinimumSpacing;
-        
-        self.bubbleImageViewRightHorizontalConstraint.constant = bubbleMarginMaximumSpacing;
-        self.typingIndicatorImageViewRightHorizontalConstraint.constant = indicatorMarginMaximumSpacing;
-    }
-    else {
-        self.bubbleImageView.image = [bubbleImageFactory outgoingMessagesBubbleImageWithColor:messageBubbleColor].messageBubbleImage;
-        
-        self.bubbleImageViewRightHorizontalConstraint.constant = bubbleMarginMinimumSpacing;
-        self.typingIndicatorImageViewRightHorizontalConstraint.constant = indicatorMarginMinimumSpacing;
-    }
-    
-    [self setNeedsUpdateConstraints];
-    
-    self.typingIndicatorImageView.image = [[UIImage jsq_defaultTypingIndicatorImage] jsq_imageMaskedWithColor:ellipsisColor];
 }
 
 @end
